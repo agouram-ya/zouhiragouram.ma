@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+    box-sizing: border-box;
+  
+    --primary: ;
+    --hover-color: #a18126;
+    --dark: #e2e8eb;
+    --light: #131212;
+  
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: "josefin sans", "helvetica", sans-serif;
+    font-size: 1rem;
+  }
+  
+  header {
+    background: var(--primary);
+    padding-left: 1.5em;
+ 
+    top: 0;
+    
+  }
+  .branding-logo  img{
+    color: var(--light);
+    font-size: calc(0.8rem + 1vw);
+    text-decoration: none;
+    height: 5rem;
+  }
+ 
+  .navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+ 
+    
+  }
+  .menu {
+    display: flex;
+    flex-direction: row;
+   
+  }
+  .menu li {
+    list-style: none;
+  }
+  .menu li a {
+    display: block;
+    text-decoration: none;
+    color: var(--light);
+    padding: 1em 1.5em;
+    font-size: 1rem;
+  }
+  
+  /* Styling submenu */
+  .has-dropdown {
+    position: relative;
+  }
+  .submenu {
+    position: absolute;
+    left: 0;
+    background-color: var(--dark);
+    white-space: nowrap;
+    padding: 1.5em 0;
+    min-width: 16em;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+  .submenu > li > a {
+    /* padding: 0.8em 1.5em; */
+   
+  
+ 
+    
+  }
+  .submenu .submenu {
+    left: -100%;
+    top: 0;
+  }
+  .submenu .submenu .submenu {
+    left: -100%;
+    top: 0;
+   
+  }
+  
+  .menu > li:hover > a,
+  .submenu > li:hover > a {
+    background-color: hsla(0, 0%, 100%, 0.05);
+    color: var(--hover-color);
+    z-index:  111;
+  }
+
+  .arrow {
+    width: 0.5em;
+    height: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+    border-left: 0.15em solid currentColor;
+    border-bottom: 0.15em solid currentColor;
+    transform: rotate(-45deg);
+    margin-top: -0.25em;
+    transition: transform 100ms ease-in-out;
+ 
+
+  }
+
+  .menu > li:hover > a + .submenu,
+  .submenu > li:hover > a + .submenu {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  
+  .menu > li:hover > a > .arrow,
+  .submenu > li:hover > a > .arrow {
+    transform: rotate(225deg);
+  }
+  
+  @media only screen and (max-width: 78.75em) {
+    .submenu .submenu .submenu {
+      left: -100%;
+      top: 0.5em;
+    }
+    .submenu {
+      min-width: 16em;
+      
+      
+    }
+  }
+  @media only screen and (max-width: 58.75em) {
+    .menu li a {
+      font-size: 1rem;
+     
+     
+    }
+  }
+  
+  @media only screen and (max-width: 50em) {
+    header {
+      position: relative;
+      padding: 1.5em 2em;
+     
+    }
+    .menu {
+      flex-flow: column;
+      position:absolute;
+      background: #d0d8d7;
+      
+      top: 4.55em;
+      left: 0;
+      right: 0;
+      height: 100vh;
+     z-index: 111;
+  
+      opacity: 0;
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: 200ms transform cubic-bezier(0.36, 0.4, 0.42, 1.48) 100ms,
+        100ms opacity ease-in-out;
+      
+     
+      
+    }
+    .menu > li > a {
+      font-size: 1rem;
+      color: var(--light);
+      
+    }
+    .submenu > li > a {
+        font-size: 1rem;
+    }
+  
+    .submenu {
+      top: 0;
+      
+      border-left: 0.12em dotted hsla(0, 0%, 5%, 0.95);
+    }
+    .submenu .submenu {
+      left: 0;
+      top: 0;
+    }
+    .submenu .submenu .submenu {
+      left: 0;
+      top: 0;
+    }
+  
+    .menu > li:hover > a + .submenu,
+    .submenu > li:hover > a + .submenu {
+      position: relative;
+    }
+  
+    .hamburger {
+      width: 2em;
+      height: 0.25em;
+      display: block;
+      background: var(--light);
+      position: relative;
+      cursor: pointer;
+      transition: 0.2s transform ease-in-out;
+    }
+    .hamburger::after,
+    .hamburger::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      background: inherit;
+      width: inherit;
+      height: inherit;
+  
+      transition: 0.2s transform ease-in-out;
+    
+    }
+  
+    .hamburger::after {
+      top: 0.65em;
+    }
+    .hamburger::before {
+      bottom: 0.65em;
+    }
+  
+    .close::after,
+    .close::before {
+      top: 0;
+      transition: 0.2s transform ease-in-out;
+    }
+    .close::before {
+      display: flex;
+    }
+    .close {
+      transform: rotate(45deg);
+      transition: 0.2s transform ease-in-out;
+    }
+    .close::after {
+      transform: rotate(-90deg);
+    }
+  
+    /* reveal menu */
+    input[type="checkbox"]:checked + .menu {
+      position: absolute;
+      opacity: 1;
+      transform: scaleY(1);
+      
+    }
+  }
+  .image1{    
+    width: 100%;
+    height: 500px;
+  }
+  .contaire h2{
+    text-align: center;
+    color: rgb(179, 165, 40);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 29px;
+    margin-top: 3%;
+  }
+  .contaire p{
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #131212;
+    font-family: "open sans";
+    font-size: 15px;
+    margin-bottom: 2%;
+    margin-top: 3%;
+    margin-bottom: 10%;
+  }
+  .imag2{
+    align-items: center;
+    margin-left: 28%;
+
+  }
+  @media only screen and (max-width: 78.75em) {
+    .image1{    
+    width: 100%;
+    height: 500px;
+  }
+  .contaire p{
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #131212;
+    font-family: "open sans";
+    font-size: 15px;
+    margin-bottom: 2%;
+    margin-top: 3%;
+    margin-bottom: 10%;
+  }
+  .imag2{
+   width: 50%;
+   /* margin-left: -28%; */
+
+  }
+
+  }
+</style>
+<body>
+    <header>
+        <nav class="navbar">
+            
+          <div class="branding">
+            <h2><a href="#" class="branding-logo"><img src="imag/LOGO.png" alt=""></a></h2>
+          </div>
+          <label for="input-hamburger" class="hamburger "></label>
+          <input type="checkbox" id="input-hamburger" hidden>
+          <ul class="menu">
+            <li><a href="Home.html" class="menu-link">Home</a></li>
+  
+            <li><a href="presente.html" class="menu-link">Qui somme nous?</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="menu-link">Histoir 
+                
+              </a>
+              <ul class="submenu"style="z-index: 111;">
+                <li><a href="histoire1.html" class="menu-link">Les habitudes alimentaires juives</a></li>
+                <li><a href="histoire1.html " class="menu-link">Histoire du shabbat </a></li>
+                  
+                
+              </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="cacherout.html" class="menu-link">La Cacherout</a>
+                <ul class="submenu" style="z-index: 111;">
+                    <li><a href="#" class="menu-link"><h6>Qu’est-ce que la Cacherout ?</h6> </a></li>
+                    <li><a href="#" class="menu-link"><h6>Quelles sont les origines des lois de Cacherout ?</h6> </a></li>
+                    <li><a href="#" class="menu-link">
+                       <h6> Quelles sont les règles essentielles de Cacherout ?</h6></a></li>
+                    <li><a href="#" class="menu-link">
+                     <h6>   Quelles significations spirituelles symbolisent ces règles ?</h6></a></li>
+                  </ul>
+            </li>
+
+
+            <li><a href="contact.html" class="menu-link">Contact</a></li>
+          </ul>
+   
+        </nav>
+    </header>
+    <div class="contaire">
+        <img  class="image1"src="imag/page2/cuisin.jpg" alt="" srcset="">
+        <h2>I- La cuisine juive :</h2>
+        <p>Les Juifs, peuple connu pour son grand mouvement et son déplacement à travers l'histoire, ont marqué, par leur passage, dans de nombreux pays soit l’Europe ou bien l’Afrique du Nord, cultures et civilisations.</p>
+        <h2> Les habitudes alimentaires juives
+        </h2>
+        <p>
+            Selon la provenance et l'origine de la nation d'Israël, la cuisine juive est divisée en deux parties principales. Juifs ashkénazes principalement d'Europe centrale et orientale et de Russie, et juifs séfarades d'Espagne, du Portugal, du Moyen-Orient et d'Afrique du Nord. Tous deux ont développé leur propre culture et nourriture dans différentes zones géographiques. En fait, les frontières qui les délimitent sont atteintes par les montagnes qui séparent le nord et le sud de l'Europe, du Caucase aux Alpes en passant par les Pyrénées. Le mouvement des Juifs à travers le monde a encouragé la division entre les deux groupes. Ce qui les rend variés dans la façon dont ils préparent les aliments en fonction du climat, des propriétés du sol et des ingrédients locaux. La cuisine séfarade, est loin de la cuisine juive nordique, se caractérise par l'huile d'olive, le citron, l'ail, les herbes, et parfois des épices qui sont très fortes. Les juifs grecs et turcs aiment la coriandre, l'aneth et les oignons frais ; les juifs habitantes d'Afrique du Nord aiment le cumin et le gingembre séché, et la cannelle est largement utilisée dans les plats espagnols salés et sucrés. Les séfarades aiment l'agneau et le poisson des eaux environnantes. Les pitas ou pains plats sont
+consommés dans tout le Moyen-Orient, la côte méditerranéenne et l'Inde. Les olives, les aubergines, les courgettes, les tomates, les poivrons et les haricots sont des ingrédients essentiels dans de nombreux plats. Les pâtisseries à base de pâtes filou, de noix et d'amandes, aromatisées à l'eau de rose ou de fleur d'oranger, sont plus populaires que les copieux riz au lait ou les desserts lactés dans le monde ashkénaze 
+
+        </p>
+        <h2>2-	Shabbat :</h2>
+        <p>Le shabbat est le jour de repos assigné au 7ème jour de la semaine Biblique, le samedi, qui commence dès la tombée de la nuit du vendredi soir. Le shabbat est officiellement jour chômé en Israël, et outre les magasins, les transports publics ne fonctionnent pas.12 Le mot vient de l'hébreu shābbath dérivant du verbe shābath « s'arrêter, se reposer ». Alors la question qui se pose pourquoi Dieu eu besoin du repos ? selon le Talmud, Dieu n’a pas besoin de repos par contre l’Homme oui, surtout pour régénérer son âme et se consacrer à la pratique des rituels de leur religion. L'observance du shabbat est mentionnée en de nombreuses occurrences dans la Torah, les plus notables étant Exode 20:8-11. Exode 20:8-11 « Souviens-toi du jour du repos, pour le sanctifier. Tu travailleras six jours, et tu feras tout ton ouvrage. Mais le septième jour est le jour du repos de l'Éternel, ton Dieu : tu ne feras aucun ouvrage, ni toi, ni ton fils, ni ta fille, ni ton serviteur, ni ta servante, ni ton bétail, ni l'étranger qui est dans tes portes ». Pendant le shabbat il est interdit de produire et cuire des aliments, pour certains juifs qui sont plus religieux il est aussi interdit de conduire ou d’allumer même l’électricité.Citons les recueils de Suzanne Harroch, une femme marocaine juive habitant actuellement à Rabat et elle est d’originaire d’Erfoud :13 « Le dîner du shabbat était copieux et le plus souvent constitué de deux plats. De nos jours, on prépare un met appeler L’kefta Sahraouya ou L’yaprek : de la viande hachée du Sahara puisque nous sommes les juifs d’Erfoud. » (S. Harroch) « Le pain servi sur la table du Shabbat est un pain spécial appelé L’khobz d’ddar (pain fait maison), » toujours d’après Suzanne Harroch dans la même émission.</p>
+        <img class="imag2" src="imag/image.jpg" alt="">
+    <h2>1-	La cuisine juive et les évènements sociaux et spirituels :</h2>
+    <p>Les interdits font partie d'une série de lois irrationnelles par lesquelles Dieu instille délibérément le doute en créant des situations contradictoires pour que chacun puisse le découvrir selon sa volonté. Par conséquent, dans la Bible, l'homme doit démontrer son obéissance à Dieu en obéissant aux lois alimentaires. Lorsque Noé a sauvé des animaux dans l'arche, Dieu lui a interdit de manger de la viande. Il formulerait alors un régime plus complet au mont Sinaï pour gouverner le peuple d'Israël. Par conséquent, les lois alimentaires sont typiques des Juifs qui sanctifiaient les gens en spiritualisant le monde matériel. Par la nourriture, Dieu invite l'homme à maîtriser ses sens, en le exposant à des attractions et en lui ordonnant de s’abstenir, de façon à maîtriser son plaisir et à laisser son corps servir son esprit. Nous pouvons donc manger n'importe quoi mais avec modération pour rester en bonne santé physique et morale. Donc on peut dire que l’idée fondamentale est que manger n’est pas seulement vitale mais il est aussi un acte spirituel et religieux.
+        La vie d'un pratiquant juif est rythmée par différentes fêtes religieuses, et chaque fête a des repas spécifiques. Il existe 7 fêtes religieuses prescrites par le TOURAH. Voici leur signification :
+       <br> A.	ROCH HACHANA L’année hébraïque ne commence pas le 1er janvier. La communauté juive fête le nouvel an à l’automne au mois de septembre. À l’occasion de cet évènement il y a un plat traditionnel partagé lors des repas festifs en famille c’est les pommes trempées dans le miel. 
+       <br> B.	 YOM KIPPOUR C’est la journée la plus sainte, sa date change entre mi-septembre et début octobre. Pendant un jour, les juifs ne doivent ni boire, ni manger ni avoir de relations sexuelles. 
+       <br> C.	 SOUKKOT Une fête qui est célébrée du 15 Tichri et dure 7 jours. Il s'agit d'un événement qui fait référence à la sortie de l'Égypte du peuple juif qui a été mis à l'épreuve par Dieu. Ils sont invités à construire des cabanes provisoires dans les quelles ils doivent au moins prendre leur repas. Il existe également un rituel autour de quatre espèces végétales.
+       <br> D.	 HANOUKKAH C’est une fête pour les enfants et qu’il dure 8jours entre fin novembre et mi-décembre. Les enfants reçoivent notamment des toupies ou encore des pièces en chocolat. 
+       <br> E.	 TOU BICHVAT Cette fête célèbre l’environnement et les arbres, la fête est entre mi-janvier et mi-février. C’est une occasion pour que les pratiquants dégustent les fruits désignés dans le Torah comme les olives, les dattes, les figues, les grenades et les raisins
+        
+       <br> F.	.POURIM Le 14 Adar dans le calendrier juif a lieu la fête de Pourim. Elle commémore notamment les événements tirés du livre d'Esther16, lorsque la population juive a échappé au génocide que voulait Aman, un conseiller du roi. Pendant cet événement, de grands banquets sont organisés mais c'est surtout le carnaval qui est célébré .
+       <br> G.	 PESSAH La fête célèbre la naissance d’Israël et la sortie d’Egypte. Les croyants sont invités à ne pas consommer de produits fermentés et à privilégier le pain azyme. 
+      <br>  H.	 CHVOAOUT Chavouot correspond à la Pentecôte chrétienne. Les familles se rassemblent et partagent un repas festif lors duquel on consomme des gâteaux à base de lait et de miel.
+        </p>
+       
+       <h2>Régulations liées à la viande et la volaille :</h2>
+       <h2>Abattage :</h2>
+       <p>Rituel L’abattage rituel (Shehita), auquel le but principal de la Torah, implicitement mais non explicitement mentionné, est de vider le sang de la bête, qu'il est interdit de manger. Shehita (Annexe n2 : Abattage rituel) consiste à inciser la veine jugulaire, l'artère carotide, l'œsophage et la trachée en un mouvement continu avec un couteau long et fin sans incision. Le non-respect d'un seul de ces critères rendrait la viande inadaptée. La carcasse doit également être inspectée après l'abattage pour s'assurer que l'animal n'est pas atteint de défauts qui pourraient le faire mourir naturellement dans l'année et rendre suspect et donc inapproprié qu'il meure à l'abattage. L'une des lésions les plus invalidantes est les adhérences pulmonaires. Les juifs séfarades considéraient l'animal comme consommable si les poumons restaient scellés après le retrait de la lésion, mais les juifs ashkénazes n'acceptaient que les animaux aux poumons lisses.</p>
+    <h2>Le nikkour </h2>
+    <p>Puisque la consommation des parties interdites dont le tendon de la hanche ou le nerf sciatique est interdite, il est nécessaire de pratiquer le nikkour : l'ablation du tendon inguinal, du suif et des gros vaisseaux sanguins environnants. Jusqu'au 19ème siècle, l'opération était quasi universelle, la viande était délicate et peu rentable, donc la viande avait un aspect "désagréable", ce que les autorités rabbiniques européennes, ainsi que le grand rabbin de New York, ont jugé bon ~ 22 ~ de déclarer l'arrière de l'animal inapte Mangé, le boucher les remet dans le circuit de distribution de la viande non casher. Ces sections s'étendent jusqu'à la 8e côte de la vache et comprennent le rumsteck, le filet, le faux-filet, le bifteck de flanc, le cintre, l'intestin principal et la côte, et sont les coupes de première classe les plus tendres de l'animal. Morceaux appelés de manière inappropriée "entrecôtes".</p>
+<h2>Accommodage</h2>
+<p>Un morceau de viande ou de volaille, même d'un animal abattu rituellement, contient encore du sang, qui doit être retiré avant la cuisson. Ce processus doit être effectué dans les trois jours suivant l'abattage, sinon le sang coagulera. Il se fait en trois étapes : 
+ <br> 	 Lors de la cheriyya ("lavage"), la viande est immergée dans un récipient rempli d'eau et trempée sur toute sa surface pendant une demi-heure pour la ramollir afin d'absorber le sel. Le liquide est ensuite égoutté en plaçant la viande sur une plaque rainurée inclinée ; 
+ <br> 	 Meli'ha ("salage") consiste à saler la viande de tous les côtés avec du sel (de préférence "sel kasher") puis à la placer sur une planche de bois pendant une heure ; 
+ <br> 	Pendant le hada'ha ("rinçage"), la viande est rincée deux fois ; cette procédure n'est pas nécessaire si la viande est rôtie sur une flamme nue ; de plus, elle est casher pour les organes riches en sang tels que le foie
+  </p>
+</div>
+  </body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+</head>
+<style>
+           :root {
+    box-sizing: border-box;
+  
+    --primary: ;
+    --hover-color: #a18126;
+    --dark: #e2e8eb;
+    --light: #131212;
+  
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: "josefin sans", "helvetica", sans-serif;
+    font-size: 1rem;
+  }
+  
+  header {
+    background: var(--primary);
+    padding-left: 1.5em;
+ 
+    top: 0;
+    
+  }
+  .branding-logo  img{
+    color: var(--light);
+    font-size: calc(0.8rem + 1vw);
+    text-decoration: none;
+    height: 5rem;
+  }
+ 
+  .navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+ 
+    
+  }
+  .menu {
+    display: flex;
+    flex-direction: row;
+   
+  }
+  .menu li {
+    list-style: none;
+  }
+  .menu li a {
+    display: block;
+    text-decoration: none;
+    color: var(--light);
+    padding: 1em 1.5em;
+    font-size: 1rem;
+  }
+  
+  /* Styling submenu */
+  .has-dropdown {
+    position: relative;
+  }
+  .submenu {
+    position: absolute;
+    left: 0;
+    background-color: var(--dark);
+    white-space: nowrap;
+    padding: 1.5em 0;
+    min-width: 16em;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+  .submenu > li > a {
+    /* padding: 0.8em 1.5em; */
+   
+  
+ 
+    
+  }
+  .submenu .submenu {
+    left: -100%;
+    top: 0;
+  }
+  .submenu .submenu .submenu {
+    left: -100%;
+    top: 0;
+   
+  }
+  
+  .menu > li:hover > a,
+  .submenu > li:hover > a {
+    background-color: hsla(0, 0%, 100%, 0.05);
+    color: var(--hover-color);
+    z-index:  111;
+  }
+
+  .arrow {
+    width: 0.5em;
+    height: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+    border-left: 0.15em solid currentColor;
+    border-bottom: 0.15em solid currentColor;
+    transform: rotate(-45deg);
+    margin-top: -0.25em;
+    transition: transform 100ms ease-in-out;
+ 
+
+  }
+
+  .menu > li:hover > a + .submenu,
+  .submenu > li:hover > a + .submenu {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  
+  .menu > li:hover > a > .arrow,
+  .submenu > li:hover > a > .arrow {
+    transform: rotate(225deg);
+  }
+  
+  @media only screen and (max-width: 78.75em) {
+    .submenu .submenu .submenu {
+      left: -100%;
+      top: 0.5em;
+    }
+    .submenu {
+      min-width: 16em;
+      
+      
+    }
+  }
+  @media only screen and (max-width: 58.75em) {
+    .menu li a {
+      font-size: 1rem;
+     
+     
+    }
+  }
+  
+  @media only screen and (max-width: 50em) {
+    header {
+      position: relative;
+      padding: 1.5em 2em;
+     
+    }
+    .menu {
+      flex-flow: column;
+      position:absolute;
+      background: #d0d8d7;
+      
+      top: 4.55em;
+      left: 0;
+      right: 0;
+      height: 100vh;
+     z-index: 111;
+  
+      opacity: 0;
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: 200ms transform cubic-bezier(0.36, 0.4, 0.42, 1.48) 100ms,
+        100ms opacity ease-in-out;
+      
+     
+      
+    }
+    .menu > li > a {
+      font-size: 1rem;
+      color: var(--light);
+      
+    }
+    .submenu > li > a {
+        font-size: 1rem;
+    }
+  
+    .submenu {
+      top: 0;
+      
+      border-left: 0.12em dotted hsla(0, 0%, 5%, 0.95);
+    }
+    .submenu .submenu {
+      left: 0;
+      top: 0;
+    }
+    .submenu .submenu .submenu {
+      left: 0;
+      top: 0;
+    }
+  
+    .menu > li:hover > a + .submenu,
+    .submenu > li:hover > a + .submenu {
+      position: relative;
+    }
+  
+    .hamburger {
+      width: 2em;
+      height: 0.25em;
+      display: block;
+      background: var(--light);
+      position: relative;
+      cursor: pointer;
+      transition: 0.2s transform ease-in-out;
+    }
+    .hamburger::after,
+    .hamburger::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      background: inherit;
+      width: inherit;
+      height: inherit;
+  
+      transition: 0.2s transform ease-in-out;
+    
+    }
+  
+    .hamburger::after {
+      top: 0.65em;
+    }
+    .hamburger::before {
+      bottom: 0.65em;
+    }
+  
+    .close::after,
+    .close::before {
+      top: 0;
+      transition: 0.2s transform ease-in-out;
+    }
+    .close::before {
+      display: flex;
+    }
+    .close {
+      transform: rotate(45deg);
+      transition: 0.2s transform ease-in-out;
+    }
+    .close::after {
+      transform: rotate(-90deg);
+    }
+  
+    /* reveal menu */
+    input[type="checkbox"]:checked + .menu {
+      position: absolute;
+      opacity: 1;
+      transform: scaleY(1);
+      
+    }
+  }
+  /**chat**/
+  @import url("https://fonts.googleapis.com/css?family=Red+Hat+Display:400,500,900&display=swap");
+body, html {
+  font-family: Red hat Display, sans-serif;
+  font-weight: 400;
+  line-height: 1.25em;
+  letter-spacing: 0.025em;
+  color: #333;
+  background: #F7F7F7;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 12rem);
+  transform: translate(-50%, -50%);
+  margin-top: 10%;
+  margin-left: -10%;
+}
+@media only screen and (max-width: 78.75em) {
+    .center {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 12rem);
+  transform: translate(-50%, -50%);
+  margin-top: 60%;
+  width: 100%;
+}
+
+}
+
+.pic {
+  width: 4rem;
+  height: 4rem;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.contact {
+  position: relative;
+  margin-bottom: 1rem;
+  padding-left: 5rem;
+  height: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contact .pic {
+  position: absolute;
+  left: 0;
+}
+.contact .name {
+  font-weight: 500;
+  margin-bottom: 0.125rem;
+}
+.contact .message, .contact .seen {
+  font-size: 0.9rem;
+  color: #999;
+}
+.contact .badge {
+  box-sizing: border-box;
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  padding-top: 0.125rem;
+  border-radius: 1rem;
+  top: 0;
+  left: 2.5rem;
+  background: #333;
+  color: white;
+}
+
+.contacts {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-6rem, -50%);
+  width: 24rem;
+  height: 32rem;
+  padding: 1rem 2rem 1rem 1rem;
+  box-sizing: border-box;
+  border-radius: 1rem 0 0 1rem;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 0 8rem 0 rgba(0, 0, 0, 0.1), 2rem 2rem 4rem -3rem rgba(0, 0, 0, 0.5);
+  transition: transform 500ms;
+}
+.contacts h2 {
+  margin: 0.5rem 0 1.5rem 5rem;
+}
+.contacts .fa-bars {
+  position: absolute;
+  left: 2.25rem;
+  color: #999;
+  transition: color 200ms;
+}
+.contacts .fa-bars:hover {
+  color: #666;
+}
+.contacts .contact:last-child {
+  margin: 0;
+}
+.contacts:hover {
+  transform: translate(-23rem, -50%);
+}
+
+.chat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24rem;
+  height: 38rem;
+  z-index: 2;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 0 8rem 0 rgba(0, 0, 0, 0.1), 0rem 2rem 4rem -3rem rgba(0, 0, 0, 0.5);
+}
+.chat .contact.bar {
+  flex-basis: 3.5rem;
+  flex-shrink: 0;
+  margin: 1rem;
+  box-sizing: border-box;
+}
+.chat .messages {
+  padding: 1rem;
+  background: #F7F7F7;
+  flex-shrink: 2;
+  overflow-y: auto;
+  box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.05), inset 0 -2rem 2rem -2rem rgba(0, 0, 0, 0.05);
+}
+.chat .messages .time {
+  font-size: 0.8rem;
+  background: #EEE;
+  padding: 0.25rem 1rem;
+  border-radius: 2rem;
+  color: #999;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+.chat .messages .message {
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  background: #FFF;
+  border-radius: 1.125rem 1.125rem 1.125rem 0;
+  min-height: 2.25rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 66%;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.075), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
+}
+.chat .messages .message.parker {
+  margin: 1rem 1rem 1rem auto;
+  border-radius: 1.125rem 1.125rem 0 1.125rem;
+  background: #333;
+  color: white;
+}
+.chat .messages .message .typing {
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-right: 0rem;
+  box-sizing: border-box;
+  background: #ccc;
+  border-radius: 50%;
+}
+.chat .messages .message .typing.typing-1 {
+  -webkit-animation: typing 3s infinite;
+          animation: typing 3s infinite;
+}
+.chat .messages .message .typing.typing-2 {
+  -webkit-animation: typing 3s 250ms infinite;
+          animation: typing 3s 250ms infinite;
+}
+.chat .messages .message .typing.typing-3 {
+  -webkit-animation: typing 3s 500ms infinite;
+          animation: typing 3s 500ms infinite;
+}
+.chat .input {
+  box-sizing: border-box;
+  flex-basis: 4rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem 0 1.5rem;
+}
+.chat .input i {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  color: #666;
+  cursor: pointer;
+  transition: color 200ms;
+}
+.chat .input i:hover {
+  color: #333;
+}
+.chat .input input {
+  border: none;
+  background-image: none;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  border-radius: 1.125rem;
+  flex-grow: 2;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1), 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.2);
+  font-family: Red hat Display, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+.chat .input input:placeholder {
+  color: #999;
+}
+
+@-webkit-keyframes typing {
+  0%, 75%, 100% {
+    transform: translate(0, 0.25rem) scale(0.9);
+    opacity: 0.5;
+  }
+  25% {
+    transform: translate(0, -0.25rem) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes typing {
+  0%, 75%, 100% {
+    transform: translate(0, 0.25rem) scale(0.9);
+    opacity: 0.5;
+  }
+  25% {
+    transform: translate(0, -0.25rem) scale(1);
+    opacity: 1;
+  }
+}
+.pic.stark {
+  background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/7/73/SMH_Mentor_6.png");
+}
+
+.pic.banner {
+  background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/4/4f/BruceHulk-Endgame-TravelingCapInPast.jpg");
+}
+
+.pic.thor {
+  background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/9/98/ThorFliesThroughTheAnus.jpg");
+}
+
+.pic.danvers {
+  background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/0/05/HeyPeterParker.png");
+}
+
+.pic.rogers {
+  background-image: url("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/7/7c/Cap.America_%28We_Don%27t_Trade_Lives_Vision%29.png");
+}
+</style>
+<body>
+    <header>
+        <header>
+            <nav class="navbar">
+                
+              <div class="branding">
+                <h2><a href="#" class="branding-logo"><img src="imag/LOGO.png" alt=""></a></h2>
+              </div>
+              <label for="input-hamburger" class="hamburger "></label>
+              <input type="checkbox" id="input-hamburger" hidden>
+              <ul class="menu">
+                <li><a href="Home.html" class="menu-link">Home</a></li>
+      
+                <li><a href="presente.html" class="menu-link">Qui somme nous?</a></li>
+                <li class="has-dropdown">
+                  <a href="#" class="menu-link">Histoir 
+                    
+                  </a>
+                  <ul class="submenu"style="z-index: 111;">
+                    <li><a href="histoire1.html" class="menu-link">Les habitudes alimentaires juives</a></li>
+                    <li><a href="histoire2.html" class="menu-link">Histoire du shabbat </a></li>
+                      
+                    
+                  </ul>
+                </li>
+                <li class="has-dropdown">
+                  <a href="cacherout.html" class="menu-link">La Cacherout</a>
+                  <ul class="submenu" style="z-index: 111;">
+                      <li><a href="#" class="menu-link">Qu’est-ce que la Cacherout ?</a></li>
+                      <li><a href="#" class="menu-link">Quelles sont les origines des lois de Cacherout ?</a></li>
+                      <li><a href="#" class="menu-link">
+                          Quelles sont les règles essentielles de Cacherout ?</a></li>
+                      <li><a href="#" class="menu-link">
+                          Quelles significations spirituelles symbolisent ces règles ?</a></li>
+                    </ul>
+              </li>
+
+
+                <li><a href="contact.html" class="menu-link">Contact</a></li>
+              </ul>
+       
+            </nav>
+        </header>
+    <br><br><br><br><br><br><br>
+            <div class="center">
+                <div class="contacts">
+                  <i class="fas fa-bars fa-2x"></i>
+                  <h2>
+                    Contacts
+                  </h2>
+                  <div class="contact">
+                    <div class="pic rogers"></div>
+                    <div class="badge">
+                      14
+                    </div>
+                    <div class="name">
+                      Steve Rogers
+                    </div>
+                    <div class="message">
+                      That is America's ass 🇺🇸🍑
+                    </div>
+                  </div>
+                  <div class="contact">
+                    <div class="pic stark"></div>
+                    <div class="name">
+                      Tony Stark
+                    </div>
+                    <div class="message">
+                      Uh, he's from space, he came here to steal a necklace from a wizard.
+                    </div>
+                  </div>
+                  <div class="contact">
+                    <div class="pic banner"></div>
+                    <div class="badge">
+                      1
+                    </div>
+                    <div class="name">
+                      Bruce Banner
+                    </div>
+                    <div class="message">
+                      There's Fournisseur
+                    </div>
+                  </div>
+                  <div class="contact">
+                    <div class="pic thor"></div>
+                    <div class="name">
+                      Thor Odinson
+                    </div>
+                    <div class="badge">
+                      3
+                    </div>
+                    <div class="message">
+                      I like this one
+                    </div>
+                  </div>
+                  <div class="contact">
+                    <div class="pic danvers"></div>
+                    <div class="badge">
+                      2
+                    </div>
+                    <div class="name">
+                      Carol Danvers
+                    </div>
+                    <div class="message">
+                        Fournisseur juive
+                    </div>
+                  </div>
+                </div>
+                <div class="chat">
+                  <div class="contact bar">
+                    <div class="pic stark"></div>
+                    <div class="name">
+                      Tony Stark
+                    </div>
+                    <div class="seen">
+                      Today at 12:56
+                    </div>
+                  </div>
+                  <div class="messages" id="chat">
+                    <div class="time">
+                      Today at 11:41
+                    </div>
+                    <div class="message parker">
+                      Hey, I'am Fournisseur in cuisine juive 👋
+                    </div>
+                    <div class="message stark">
+                        I want to know about culture, Jewish cuisine.
+                    </div>
+                    <div class="message parker">
+                        well i can help you
+                    </div>
+                    <div class="message parker">
+                        You can ask any question about Jewish cooking
+                    </div>
+                    <div class="message stark">
+                    </div>
+                    <div class="message stark">
+                      <div class="typing typing-1"></div>
+                      <div class="typing typing-2"></div>
+                      <div class="typing typing-3"></div>
+                    </div>
+                  </div>
+                  <div class="input">
+                    <i class="fas fa-camera"></i><i class="far fa-laugh-beam"></i><input placeholder="Type your message here!" type="text" /><i class="fas fa-microphone"></i>
+                  </div>
+                </div>
+              </div>
+              <script>var chat = document.getElementById('chat');
+                chat.scrollTop = chat.scrollHeight - chat.clientHeight;</script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cacherout</title>
+</head>
+<style>
+        :root {
+    box-sizing: border-box;
+  
+    --primary: ;
+    --hover-color: #a18126;
+    --dark: #e2e8eb;
+    --light: #131212;
+  
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: "josefin sans", "helvetica", sans-serif;
+    font-size: 1rem;
+  }
+  
+  header {
+    background: var(--primary);
+    padding-left: 1.5em;
+ 
+    top: 0;
+    
+  }
+  .branding-logo  img{
+    color: var(--light);
+    font-size: calc(0.8rem + 1vw);
+    text-decoration: none;
+    height: 5rem;
+  }
+ 
+  .navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+ 
+    
+  }
+  .menu {
+    display: flex;
+    flex-direction: row;
+   
+  }
+  .menu li {
+    list-style: none;
+  }
+  .menu li a {
+    display: block;
+    text-decoration: none;
+    color: var(--light);
+    padding: 1em 1.5em;
+    font-size: 1rem;
+  }
+  
+  /* Styling submenu */
+  .has-dropdown {
+    position: relative;
+  }
+  .submenu {
+    position: absolute;
+    left: 0;
+    background-color: var(--dark);
+    white-space: nowrap;
+    padding: 1.5em 0;
+    min-width: 16em;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+  .submenu > li > a {
+    /* padding: 0.8em 1.5em; */
+   
+  
+ 
+    
+  }
+  .submenu .submenu {
+    left: -100%;
+    top: 0;
+  }
+  .submenu .submenu .submenu {
+    left: -100%;
+    top: 0;
+   
+  }
+  
+  .menu > li:hover > a,
+  .submenu > li:hover > a {
+    background-color: hsla(0, 0%, 100%, 0.05);
+    color: var(--hover-color);
+    z-index:  111;
+  }
+
+  .arrow {
+    width: 0.5em;
+    height: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+    border-left: 0.15em solid currentColor;
+    border-bottom: 0.15em solid currentColor;
+    transform: rotate(-45deg);
+    margin-top: -0.25em;
+    transition: transform 100ms ease-in-out;
+ 
+
+  }
+
+  .menu > li:hover > a + .submenu,
+  .submenu > li:hover > a + .submenu {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  
+  .menu > li:hover > a > .arrow,
+  .submenu > li:hover > a > .arrow {
+    transform: rotate(225deg);
+  }
+  
+  @media only screen and (max-width: 78.75em) {
+    .submenu .submenu .submenu {
+      left: -100%;
+      top: 0.5em;
+    }
+    .submenu {
+      min-width: 16em;
+      
+      
+    }
+  }
+  @media only screen and (max-width: 58.75em) {
+    .menu li a {
+      font-size: 1rem;
+     
+     
+    }
+  }
+  
+  @media only screen and (max-width: 50em) {
+    header {
+      position: relative;
+      padding: 1.5em 2em;
+     
+    }
+    .menu {
+      flex-flow: column;
+      position:absolute;
+      background: #d0d8d7;
+      
+      top: 4.55em;
+      left: 0;
+      right: 0;
+      height: 100vh;
+     z-index: 111;
+  
+      opacity: 0;
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: 200ms transform cubic-bezier(0.36, 0.4, 0.42, 1.48) 100ms,
+        100ms opacity ease-in-out;
+      
+     
+      
+    }
+    .menu > li > a {
+      font-size: 1rem;
+      color: var(--light);
+      
+    }
+    .submenu > li > a {
+        font-size: 1rem;
+    }
+  
+    .submenu {
+      top: 0;
+      
+      border-left: 0.12em dotted hsla(0, 0%, 5%, 0.95);
+    }
+    .submenu .submenu {
+      left: 0;
+      top: 0;
+    }
+    .submenu .submenu .submenu {
+      left: 0;
+      top: 0;
+    }
+  
+    .menu > li:hover > a + .submenu,
+    .submenu > li:hover > a + .submenu {
+      position: relative;
+    }
+  
+    .hamburger {
+      width: 2em;
+      height: 0.25em;
+      display: block;
+      background: var(--light);
+      position: relative;
+      cursor: pointer;
+      transition: 0.2s transform ease-in-out;
+    }
+    .hamburger::after,
+    .hamburger::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      background: inherit;
+      width: inherit;
+      height: inherit;
+  
+      transition: 0.2s transform ease-in-out;
+    
+    }
+  
+    .hamburger::after {
+      top: 0.65em;
+    }
+    .hamburger::before {
+      bottom: 0.65em;
+    }
+  
+    .close::after,
+    .close::before {
+      top: 0;
+      transition: 0.2s transform ease-in-out;
+    }
+    .close::before {
+      display: flex;
+    }
+    .close {
+      transform: rotate(45deg);
+      transition: 0.2s transform ease-in-out;
+    }
+    .close::after {
+      transform: rotate(-90deg);
+    }
+  
+    /* reveal menu */
+    input[type="checkbox"]:checked + .menu {
+      position: absolute;
+      opacity: 1;
+      transform: scaleY(1);
+      
+    }
+  }
+  .contunu h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #a18126;
+    text-decoration:underline;
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 3%;
+  }
+  .contunu h3{
+    color: rgb(58, 56, 56);
+    font-family: cursive;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 4%;
+  }
+  .contunu p{
+    margin-left: 20%;
+    margin-right: 20%;
+    
+  }
+  .imag2{
+    margin-left: 20%;
+    margin-top: 5%;
+
+  }
+  @media only screen and (max-width: 78.75em){
+    .contunu h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #a18126;
+    text-decoration:underline;
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 3%;
+  }
+  .contunu h3{
+    color: rgb(58, 56, 56);
+    font-family: cursive;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 4%;
+  }
+  .contunu p{
+    margin-left: 20%;
+    margin-right: 20%;
+    
+  }
+  .imag2{
+    width: 70%;
+
+  }
+  }
+</style>
+<body>
+    <header>
+        <nav class="navbar">
+            
+          <div class="branding">
+            <h2><a href="#" class="branding-logo"><img src="imag/LOGO.png" alt=""></a></h2>
+          </div>
+          <label for="input-hamburger" class="hamburger "></label>
+          <input type="checkbox" id="input-hamburger" hidden>
+          <ul class="menu">
+            <li><a href="Home.html" class="menu-link">Home</a></li>
+  
+            <li><a href="presente.html" class="menu-link">Qui somme nous?</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="menu-link">Histoir 
+                
+              </a>
+              <ul class="submenu"style="z-index: 111;">
+                <li><a href="histoire1.html" class="menu-link">Les habitudes alimentaires juives</a></li>
+                <li><a href="histoire2.html" class="menu-link">Histoire du shabbat </a></li>
+                  
+                
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="cacherout.html" class="menu-link">La Cacherout</a>
+              <ul class="submenu" style="z-index: 111;">
+                  <li><a href="#" class="menu-link">Qu’est-ce que la Cacherout ?</a></li>
+                  <li><a href="#" class="menu-link">Quelles sont les origines des lois de Cacherout ?</a></li>
+                  <li><a href="#" class="menu-link">
+                      Quelles sont les règles essentielles de Cacherout ?</a></li>
+                  <li><a href="#" class="menu-link">
+                      Quelles significations spirituelles symbolisent ces règles ?</a></li>
+                </ul>
+          </li>
+
+
+            <li><a href="contact.html" class="menu-link">Contact</a></li>
+          </ul>
+   
+        </nav>
+    </header>
+    <div class="contunu">
+        <img src="imag/image/contunu/galury6.jpg" alt="" width="100%">
+        <h1>LA CACHEROUT</h1>
+        <h3>
+            Ce que nous mangeons nourrit aussi notre âme
+        </h3>
+        <p>Parce que la cacherout est un des premiers aspects du judaïsme, parce que ce que nous mangeons nourrit aussi notre âme, le Consistoire a cherché l’excellence dans ce domaine.
+
+        </p>
+        <h3>Qu’est-ce que la Cacherout ?</h3>
+        <p>La Cacherout désigne l’ensemble des règles alimentaires juives, dont la source se trouve dans la Torah. Les lois de la Cacherout appartiennent aux ‘houkim, les décrets divins dont nous ne pouvons pas réellement comprendre les fondements.
+
+            En d’autres termes, ces principes alimentaires s’inscrivent dans la vocation religieuse et spirituelle du peuple d’Israël. La Cacherout constitue une véritable discipline de vie qui nous rapproche de D.ieu, car l’âme aussi, a besoin de se nourrir.</p>
+    
+    <h3>Quelles sont les origines des lois de Cacherout ?</h3>
+    <p>Voici quelques sources bibliques : <br>
+        – « Tu ne feras pas cuire le chevreau dans le lait de sa mère » (Exode Chémot XXIII, 19). <br>
+
+– « Et vous ne consommerez pas le sang dans toutes vos demeures, ni de l’oiseau, ni de l’animal terrestre » (Lévitique Vayikra VII). <br>
+
+– Voici les animaux que vous mangerez parmi tous les animaux qui sont sur la terre. <br>
+
+Vous mangerez de tout animal qui a le sabot fendu, le pied fourchu, et qui rumine. […] <br>
+
+Vous ne mangerez pas le chameau, qui rumine, mais qui n’a pas le sabot fendu : vous le regarderez comme impur. <br>
+
+Vous ne mangerez pas le daman, qui rumine, mais qui n’a pas le sabot fendu : vous le regarderez comme impur.br 
+
+Vous ne mangerez pas le lièvre, qui rumine, mais qui n’a pas le sabot fendu : vous le regarderez comme impur. <br>
+
+Vous ne mangerez pas le porc, qui a le sabot fendu et le pied fourchu, mais qui ne rumine pas: vous le regarderez comme impur. […] <br>
+
+Voici les animaux que vous mangerez parmi tous ceux qui sont dans les eaux. Ceux qui ont des nageoires et des écailles […] <br>
+
+Voici, parmi les oiseaux, ceux que vous refuserez, et que l’on ne mangera pas : l’aigle, l’orfraie et l’aigle de mer ; le Milan, l’autour et ce qui est de son espèce; le corbeau et toutes ses espèces ; l’autruche, le hibou, la mouette, l’épervier et ce qui est de son espèce; le chat-huant, le plongeon et la chouette; le cygne, le pélican et le cormoran ; la cigogne, le héron et ce qui est de son espèce, la huppe et la chauve-souris […]. (Lévitique Vayikra XI)
+    </p>
+    <h3>Quelles sont les règles essentielles de Cacherout ?</h3>
+    <p>
+        Les fondements de la Cacherout sont : <br>
+        
+        – Le choix des animaux et le mode d’abattage. <br>
+        
+        – L’interdiction de consommer le sang, le nerf sciatique et certaines graisses.
+        <br>
+        – L’interdiction de mélanger et de consommer le lait et la viande, et d’en tirer profit.
+        <br>
+        – La préparation des ustensiles.</p>
+        <h3>
+            Quelles significations spirituelles symbolisent ces règles ?
+        </h3>
+    <p>
+        – Les sabots fendus rappellent notamment que nous devons toujours distinguer le bien du mal. Sans discernement, nous risquons de nous éloigner de D.ieu !
+<br>
+– La rumination symbolise l’étude dans lequel l’étudiant doit sans cesse réfléchir et intégrer les enseignements de la Torah.
+<br>
+– On ne mélange pas le lait et la viande car on ne mélange pas la vie et la mort.
+<br>
+– On ne consomme pas le sang car il symbolise l’âme. Il ne faut donc pas « consommer » l’âme de l’animal avec sa chair, c’est interdit. On peut juste consommer sa chair.
+<br>
+– La chéhita est un procédé d’abattage qui ne fait pas souffrir la bête, car son cerveau se vide immédiatement de son sang. Plusieurs études vétérinaires l’ont confirmé.
+    </p>
+    <h3>
+        Quels sont les moyens mis en place ?
+    </h3>
+    <p>Une équipe complète est à votre service, sous le contrôle des Dayanim et Rabbanim du Beth Din de Paris regroupant :
+<br>
+        – Ingénieur chimiste et pharmacien
+        <br>
+        – Chohatim
+        <br>
+        – Chomerim
+        <br>
+        – Machguihim
+        <br>
+        – La structure administrative et financière indispensable à son bon fonctionnement.</p>
+    <img  class="imag2" src="imag/page2/cachrot.jpg" alt="">
+    
+    
+    
+    
+    
+    
+    
+    
+        </div>
+
+    
+</body>
+</html>
